@@ -3,6 +3,8 @@ This is a repository for assorted files based on the Toki Pona dialect/script I 
 
 Day 2 Post: https://www.reddit.com/r/tokipona/comments/16y9801/tokex_a_hexdigit_based_toki_pona_dialectscript/
 
+5ucur made a Tokex Converter using Python.  Head on over and check it out! 👍🏻 https://github.com/5ucur/tokex-convert-py
+
 ![image](https://github.com/AbbyRead/Tokex/blob/c15dd30cc2e2f21eb22cd17ee8af7b8fdc93fada/Tokex%20in%20Minicube64.png)
 | Toki Pona<br>Latin Phoneme | Tokex<br>Equivalent |
 |---:|:---|
