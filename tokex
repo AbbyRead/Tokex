@@ -15,7 +15,7 @@ done
 # Shift the processed options out of the argument list
 shift $((OPTIND-1))
 
-# Use awk to add "6" to words with an odd number of letters
+# Use awk to add "0" to words with an odd number of letters
 awk 'BEGIN { RS = "" } {
     gsub(/[.,!?]/, " ");  # Replace punctuation with spaces
     words = split($0, arr, /[ \n]/);
@@ -24,7 +24,7 @@ awk 'BEGIN { RS = "" } {
         word = arr[i];
         if (word ~ /^[a-zA-Z]+$/) {  # Only consider words with letters
             if (length(word) % 2 == 1) {
-                word = word "6"
+                word = word "0"
             }
         }
         output = output word (i == words ? "" : " ");
@@ -55,4 +55,4 @@ while IFS= read -r -n 1 char; do
 done | sed 's/\./\n/g'  # Replace periods with newline characters
 
 # Add an EOF indicator to the end
-echo EEEE
+echo FF
