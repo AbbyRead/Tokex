@@ -69,7 +69,7 @@ convert: input
 	@chmod +x convert.sh
 
 clean:
-	rm -rf $(obj_dir) $(bin_dir)
+	rm -rf convert.sh $(obj_dir) $(bin_dir)
 
 cleanio:
 	rm -rf input output
