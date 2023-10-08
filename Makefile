@@ -17,13 +17,10 @@ obj_files := $(patsubst $(src_dir)/%.c,$(obj_dir)/%.o,$(src_files))
 # List binary targets (one for each object file)
 bin_targets := $(patsubst $(obj_dir)/%.o,$(bin_dir)/%,$(obj_files))
 
-# Determine the newest binary
-newest_binary := $(lastword $(shell find $(bin_dir) -type f -name '*'))
-
 .PHONY: all, clean
 
 # Default target
-all : $(bin_targets)
+all : $(bin_targets) convert
 
 # Rule to compile .c files into .o files
 $(obj_dir)/%.o: $(src_dir)/%.c | $(obj_dir)
@@ -38,6 +35,41 @@ $(obj_dir):
 
 $(bin_dir):
 	mkdir -p $(bin_dir)
+
+
+input:
+	@mkdir -p input
+
+output:
+	@mkdir -p output
+
+convert: input output
+	@echo 'input_folder="input"' > convert.sh
+	@echo 'output_folder="output"' >> convert.sh
+	@echo '' >> convert.sh
+	@echo "# Create the output folder if it doesn't exist" >> convert.sh
+	@echo 'mkdir -p "$$output_folder"' >> convert.sh
+	@echo '' >> convert.sh
+	@echo '# Iterate through each file in the input folder' >> convert.sh
+	@echo 'for input_file in "$$input_folder"/*; do' >> convert.sh
+	@echo '    # Extract the file name without the path and extension' >> convert.sh
+	@echo '    filename=$$(basename -- "$$input_file")' >> convert.sh
+	@echo '    filename_no_extension="$${filename%.*}"' >> convert.sh
+	@echo '' >> convert.sh
+	@echo '    # Generate the output file path in the output folder' >> convert.sh
+	@echo '    output_file="$$output_folder/$$filename_no_extension.bin"' >> convert.sh
+	@echo '' >> convert.sh
+	@echo '    # Run your program to process the input file and create the output binary file' >> convert.sh
+	@echo '    ./bin/convert "$$input_file" "$$output_file"' >> convert.sh
+	@echo '' >> convert.sh
+	@echo '    # Optionally, you can add error handling here to check if the program executed successfully.' >> convert.sh
+	@echo '    # If not, you can log an error or take appropriate action.' >> convert.sh
+	@echo '' >> convert.sh
+	@echo '    echo "Processed $$input_file -> $$output_file"' >> convert.sh
+	@echo 'done' >> convert.sh
+	@echo '' >> convert.sh
+	@echo 'echo "Processing complete."' >> convert.sh
+	@chmod +x convert.sh
 
 clean:
 	rm -rf $(obj_dir) $(bin_dir)
