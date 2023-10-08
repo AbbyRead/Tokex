@@ -13,6 +13,7 @@ src_files := $(wildcard $(src_dir)/*.c)
 
 # Generate object file names from source file names
 obj_files := $(patsubst $(src_dir)/%.c,$(obj_dir)/%.o,$(src_files))
+.SECONDARY: $(obj_files)
 
 # List binary targets (one for each object file)
 bin_targets := $(patsubst $(obj_dir)/%.o,$(bin_dir)/%,$(obj_files))
@@ -36,14 +37,10 @@ $(obj_dir):
 $(bin_dir):
 	mkdir -p $(bin_dir)
 
-
 input:
 	@mkdir -p input
 
-output:
-	@mkdir -p output
-
-convert: input output
+convert: input
 	@echo 'input_folder="input"' > convert.sh
 	@echo 'output_folder="output"' >> convert.sh
 	@echo '' >> convert.sh
@@ -73,6 +70,3 @@ convert: input output
 
 clean:
 	rm -rf $(obj_dir) $(bin_dir)
-
-# Phony target to ensure 'all' is always run when requested
-.PHONY: all
