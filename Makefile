@@ -18,7 +18,7 @@ obj_files := $(patsubst $(src_dir)/%.c,$(obj_dir)/%.o,$(src_files))
 # List binary targets (one for each object file)
 bin_targets := $(patsubst $(obj_dir)/%.o,$(bin_dir)/%,$(obj_files))
 
-.PHONY: all, clean
+.PHONY: all, clean, cleanio
 
 # Default target
 all : $(bin_targets) convert
@@ -70,3 +70,6 @@ convert: input
 
 clean:
 	rm -rf $(obj_dir) $(bin_dir)
+
+cleanio:
+	rm -rf input output
