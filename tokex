@@ -42,8 +42,8 @@ while IFS= read -r -n 1 char; do
         [Pp]) printf "B" ;;
         [Tt]) printf "D" ;;
         [Kk]) printf "C" ;;
-        [Mm]) printf "9" ;;
-        [Nn]) printf "8" ;;
+        [Mm]) printf "8" ;;
+        [Nn]) printf "9" ;;
         [Ll]) printf "7" ;;
         [Ss]) printf "5" ;;
         [Jj]) printf "4" ;;
