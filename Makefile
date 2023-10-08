@@ -6,7 +6,7 @@ bin_dir := bin
 # Leaving CC as default for ease of use
 
 # Define compiler flags
-CFLAGS := -Wall -Wextra -I$(scr_dir)
+CFLAGS := -Wall -Wextra -I$(src_dir)
 
 # List of source files (all .c files in src/)
 src_files := $(wildcard $(src_dir)/*.c)
@@ -20,7 +20,7 @@ bin_targets := $(patsubst $(obj_dir)/%.o,$(bin_dir)/%,$(obj_files))
 # Determine the newest binary
 newest_binary := $(lastword $(shell find $(bin_dir) -type f -name '*'))
 
-.PHONY all, clean, run
+.PHONY: all, clean
 
 # Default target
 all : $(bin_targets)
@@ -42,11 +42,5 @@ $(bin_dir):
 clean:
 	rm -rf $(obj_dir) $(bin_dir)
 
-run: all
-	./$(newest_binary)
-
 # Phony target to ensure 'all' is always run when requested
 .PHONY: all
-
-# Set the newest binary as the default target
-.DEFAULT_GOAL := $(newest_binary)
