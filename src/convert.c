@@ -5,7 +5,7 @@ int main(int argc, char *argv[]) {
 	FILE *in, *out;
 	char ch;
 	if (argc != 3) {
-		printf("%s", "usage: test <in> <out>\n");
+		printf("%s", "Usage: ./convert <in> <out>\n");
 		exit(1);
 	}
 
