@@ -2,7 +2,7 @@
 
 int check_usage(int argc, char **argv, FILE *in, FILE *out) {
 	if (argc != 3) {
-		fprintf(stderr, "Usage: ./%s <in> <out>\n", *argv[0]);
+		fprintf(stderr, "Usage: ./%s <in> <out>\n", argv[0]);
 		exit(1);
 	}
 

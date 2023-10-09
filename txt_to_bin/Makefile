@@ -26,7 +26,7 @@ $(obj_dir)/%.o: $(src_dir)/%.c | $(obj_dir)
 
 # Rule to link .o files into binaries
 $(bin_dir)/convert: $(obj_files) | $(bin_dir)
-	$(CC) $< -o $@
+	$(CC) $^ -o $@
 
 $(obj_dir):
 	mkdir -p $(obj_dir)

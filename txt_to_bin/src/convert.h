@@ -1,6 +1,10 @@
 #ifndef CONVERT_H
 #define CONVERT_H
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
 #define TAB_SIZE 4 // (bytes)
 
 struct hexit_pair {
@@ -23,6 +27,7 @@ struct output_flag {
 	#define LOW  1
 
 int check_usage(int argc, char **argv, FILE *in, FILE *out);
+char get_tokex(const char ch, struct output_flag flag);
 char construct_byte(struct hexit_pair nibble);
 
 #endif
