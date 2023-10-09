@@ -38,7 +38,14 @@ input:
 	@mkdir -p input
 
 convert.sh: input
-	@echo 'input_folder="input"' > convert.sh
+	@echo "#!/bin/sh" > convert.sh
+	@echo '' >> convert.sh
+	@echo '# Get the directory of the script' >> convert.sh
+	@echo 'script_dir="$$( cd "$$( dirname "$$0" )" && pwd )"' >> convert.sh
+	@echo '' >> convert.sh
+	@echo "# Change to the script's directory" >> convert.sh
+	@echo 'cd "$$script_dir"' >> convert.sh
+	@echo 'input_folder="input"' >> convert.sh
 	@echo 'output_folder="output"' >> convert.sh
 	@echo '' >> convert.sh
 	@echo "# Create the output folder if it doesn't exist" >> convert.sh
