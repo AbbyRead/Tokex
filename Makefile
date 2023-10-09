@@ -15,20 +15,17 @@ src_files := $(wildcard $(src_dir)/*.c)
 obj_files := $(patsubst $(src_dir)/%.c,$(obj_dir)/%.o,$(src_files))
 .SECONDARY: $(obj_files)
 
-# List binary targets (one for each object file)
-bin_targets := $(patsubst $(obj_dir)/%.o,$(bin_dir)/%,$(obj_files))
-
 .PHONY: all, clean, cleanio
 
 # Default target
-all : $(bin_targets) convert
+all : $(bin_dir)/convert convert.sh
 
 # Rule to compile .c files into .o files
 $(obj_dir)/%.o: $(src_dir)/%.c | $(obj_dir)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Rule to link .o files into binaries
-$(bin_dir)/%: $(obj_dir)/%.o | $(bin_dir)
+$(bin_dir)/convert: $(obj_files) | $(bin_dir)
 	$(CC) $< -o $@
 
 $(obj_dir):
@@ -40,7 +37,7 @@ $(bin_dir):
 input:
 	@mkdir -p input
 
-convert: input
+convert.sh: input
 	@echo 'input_folder="input"' > convert.sh
 	@echo 'output_folder="output"' >> convert.sh
 	@echo '' >> convert.sh
