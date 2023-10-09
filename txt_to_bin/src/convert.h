@@ -26,7 +26,10 @@ struct output_flag {
 	#define HIGH 0
 	#define LOW  1
 
-int check_usage(int argc, char **argv, FILE *in, FILE *out);
+// Globals
+FILE *in, *out;
+
+int check_usage(int argc, char **argv);
 char get_tokex(const char ch, struct output_flag flag);
 char construct_byte(struct hexit_pair nibble);
 

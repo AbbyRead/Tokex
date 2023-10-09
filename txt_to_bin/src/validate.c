@@ -1,6 +1,6 @@
 #include "convert.h"
 
-int check_usage(int argc, char **argv, FILE *in, FILE *out) {
+int check_usage(int argc, char **argv) {
 	if (argc != 3) {
 		fprintf(stderr, "Usage: ./%s <in> <out>\n", argv[0]);
 		exit(1);

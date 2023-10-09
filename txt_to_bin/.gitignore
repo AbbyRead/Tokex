@@ -3,3 +3,4 @@ obj/
 input/
 output/
 convert.sh
+.DS_Store
