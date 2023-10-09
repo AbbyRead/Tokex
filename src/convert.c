@@ -2,8 +2,7 @@
 
 int main(int argc, char *argv[]) {
 	char ch;
-	FILE *in, *out;
-	check_usage(argc, argv, in, out);
+	check_usage(argc, argv);
 
 	struct output_flag flag;
 	flag.tab = NO;
@@ -76,8 +75,8 @@ int main(int argc, char *argv[]) {
 // Don't need to call it if you're just outputting a 00 byte.
 char construct_byte(struct hexit_pair nibble) {
 	char ch = 0;
-	ch &= nibble.low;
-	ch &= nibble.high << 4;
+	ch |= nibble.low;
+	ch |= nibble.high << 4;
 	return ch;
 }
 
