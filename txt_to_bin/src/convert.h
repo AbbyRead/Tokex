@@ -15,7 +15,9 @@ struct hexit_pair {
 struct output_flag {
 	unsigned int tab : 1;
 	unsigned int space : 1;
+	unsigned int period : 1;
 	unsigned int newline  : 1;
+	unsigned int invalid  : 1;
 	unsigned int next_nibble : 1;
 };
 	// .tab or .newline

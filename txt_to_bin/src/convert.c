@@ -20,14 +20,16 @@ int main(int argc, char *argv[]) {
 		char tokex_char = get_tokex(ch, &flag);
 
 		// Only process character if it is a valid input
-		if (tokex_char != 0xF) {
+		if (!flag.invalid) {
 			int offset; // for tab rounding
 
 			// If at start of output byte
 			if (flag.next_nibble == HIGH) {
-				if (flag.tab || flag.space || flag.newline) {
-					fputc(0, out); // hex 00 byte
-					if (flag.newline) fputc(0, out); // extra for nl
+				if (flag.tab || flag.space || flag.period || flag.newline) {
+					ch = 0;
+					if (flag.period || flag.newline) ch = 0x0F;
+					fputc(ch, out);
+					if (flag.newline) fputc(0xF0, out);
 					if (flag.tab && !(offset = ftell(out) % TAB_SIZE)) {
 						int bytes_to_write = TAB_SIZE - offset;
 						for (int i = 0; i < bytes_to_write; ++i) {
@@ -44,12 +46,14 @@ int main(int argc, char *argv[]) {
 			if (flag.next_nibble == LOW) {
 
 				// Check if we need to pad to bytes
-				if (flag.tab || flag.space || flag.newline) {
+				if (flag.tab || flag.space || flag.period || flag.newline) {
 					nibble.low = 0; // padding before actual
 					ch = construct_byte(nibble); // pad it
 					fputc(ch, out); // output padded preceding byte
-					fputc(0, out); // hex 00 actual byte
-					if (flag.newline) fputc(0, out); // extra for newline
+					ch = 0;
+					if (flag.period || flag.newline) ch = 0x0F;
+					fputc(ch, out); // hex 00 actual byte
+					if (flag.newline) fputc(0xF0, out); // extra for newline
 					if (flag.tab && !(offset = ftell(out) % TAB_SIZE)) {
 						int bytes_to_write = TAB_SIZE - offset;
 						for (int i = 0; i < bytes_to_write; ++i) {
@@ -84,7 +88,9 @@ char get_tokex(const char ch, struct output_flag *flag){
 	// Clear flags in prep
 	flag->tab = NO;
 	flag->space = NO;
+	flag->period = NO;
 	flag->newline = NO;
+	flag->invalid = NO;
 
 	switch(ch) {
 		case 'A':
@@ -166,16 +172,21 @@ char get_tokex(const char ch, struct output_flag *flag){
 			flag->tab = YES;
 			return 0x0;
 		break;
-		
+
 		case ' ':
-		case '.':
 			flag->space = YES;
 			return 0x0;
 		break;
 
-		default:
-			fprintf(stderr, "%s%c\n", "Invalid character detected: ", ch);
+		case '.':
+			flag->period = YES;
 			return 0xF;
+		break;
+
+		default:
+			flag->invalid = YES;
+			fprintf(stderr, "%s%c\n", "Invalid character detected: ", ch);
+			return 0x0;
 		break;	
 	} 
 }
