@@ -17,7 +17,7 @@ shift $((OPTIND-1))
 
 # Use awk to add "0" to words with an odd number of letters
 awk 'BEGIN { RS = "" } {
-    gsub(/[.,!?]/, " ");  # Replace punctuation with spaces
+    gsub(/[,!?]/, " ");  # Replace punctuation with spaces
     words = split($0, arr, /[ \n]/);
     output = "";
     for (i = 1; i <= words; i++) {
@@ -48,11 +48,9 @@ while IFS= read -r -n 1 char; do
         [Ss]) printf "5" ;;
         [Jj]) printf "4" ;;
         [Ww]) printf "3" ;;
-        $'\n') printf "0000" ;;
+         $'') printf "0F" ;;
+        $'\n') printf "0FF0" ;;
         " ") if [ "$convert_spaces" = true ]; then printf "__"; else printf "00"; fi ;;
         *) printf "%s" "$char" ;;
     esac
-done | sed 's/\./\n/g'  # Replace periods with newline characters
-
-# Add an EOF indicator to the end
-echo FF
+done
