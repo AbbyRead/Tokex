@@ -1,6 +1,6 @@
 # Tokex
 Toki Pona's alphabet is only made up of 14 Latin characters, so I made a way to represent them all using hexadecimal digits (hexits), including representation for some punctuation/separation characters.
-`
+``
 1 bit represents one binary digit (0 or 1)
 1 byte = 8 bits
 1 nibble = 4 bits
@@ -16,7 +16,7 @@ A-F can also be represented in lowercase a-f, either way representing the same s
 As if stored in a byte of memory,
 decimal value 12 in binary: 0000 1000;  in hex: 0C
 decimal value 32 in binary: 0010 0000;  in hex: 20
-`
+``
 Since a byte is 2 hexadecimal digits (2 nibbles of storage), every letter of the Tokex alphabet uses only half a byte.  Even the smallest, standard, plaintext representation uses 1 byte/character, minimum.  So, while you won't be able to read Tokex from a Notepad window, it is going to take up a lot less space while still being readable from a hexdump or a memory map view.
 
 5ucur made an offshoot/alternative to Tokex called Hex sitelen Lasin.  Head on over and check it out! 👍🏻 https://github.com/5ucur/hex-sitelen-lasin/
