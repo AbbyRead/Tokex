@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
 
 	while ((ch = getc(in)) != EOF) {
 		// Glean Tokex character from input (0xF means invalid)
-		char tokex_char = get_tokex(ch, flag);
+		char tokex_char = get_tokex(ch, &flag);
 
 		// Only process character if it is a valid input
 		if (tokex_char != 0xF) {
@@ -80,11 +80,11 @@ char construct_byte(struct hexit_pair nibble) {
 	return ch;
 }
 
-char get_tokex(const char ch, struct output_flag flag){
+char get_tokex(const char ch, struct output_flag *flag){
 	// Clear flags in prep
-	flag.tab = NO;
-	flag.space = NO;
-	flag.newline = NO;
+	flag->tab = NO;
+	flag->space = NO;
+	flag->newline = NO;
 
 	switch(ch) {
 		case 'A':
@@ -158,18 +158,18 @@ char get_tokex(const char ch, struct output_flag flag){
 		break;
 		
 		case '\n':
-			flag.newline = YES;
+			flag->newline = YES;
 			return 0x0;
 		break;
 
 		case '\t':
-			flag.tab = YES;
+			flag->tab = YES;
 			return 0x0;
 		break;
 		
 		case ' ':
 		case '.':
-			flag.space = YES;
+			flag->space = YES;
 			return 0x0;
 		break;
 

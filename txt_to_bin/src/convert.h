@@ -30,7 +30,7 @@ struct output_flag {
 FILE *in, *out;
 
 int check_usage(int argc, char **argv);
-char get_tokex(const char ch, struct output_flag flag);
+char get_tokex(const char ch, struct output_flag *flag);
 char construct_byte(struct hexit_pair nibble);
 
 #endif
