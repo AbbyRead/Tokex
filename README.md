@@ -43,4 +43,4 @@ Output a 0 hexit if an the word does not end in an even number of letters.
 becomes
 4A90 0071 00B6 9A0F
 ```
-![image](https://raw.githubusercontent.com/AbbyRead/Tokex/main/Tokex%20in%20Minicube64.png)
+![image](https://raw.githubusercontent.com/AbbyRead/Tokex/main/examples/Tokex%20in%20Minicube64.png)
