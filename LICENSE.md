@@ -1,4 +1,4 @@
-Tokex Copyright (c) Abigail Read 2023
+Tokex (c) Abigail Read 2023
 
 This text/binary specification and software relates to (but is unaffiliated with) 
 the constructed language "Toki Pona", who's official website is: https://tokipona.org
