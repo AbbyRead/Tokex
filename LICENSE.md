@@ -1,6 +1,12 @@
+Copyright (c) Abigail Read 2023
+
 This creative work by Abigail Read is based on the official Toki Pona book and website: http://tokipona.org
-The Official Toki Pona Dictionary is in the public domain.
 
-Tokex © 2023 by Abigail Read is licensed under Attribution 4.0 International. 
+THIS MATERIAL IS PROVIDED AS IS, WITH ABSOLUTELY NO WARRANTY EXPRESSED
+OR IMPLIED.  ANY USE IS AT YOUR OWN RISK.
 
-To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/
+Permission is hereby granted to use or copy this program
+for any purpose,  provided the above notices are retained on all copies.
+Permission to modify the code and to distribute modified code is granted,
+provided the above notices are retained, and a notice that the code was
+modified is included with the above copyright notice.
