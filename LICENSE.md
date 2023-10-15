@@ -1,6 +1,7 @@
-Copyright (c) Abigail Read 2023
+Tokex Copyright (c) Abigail Read 2023
 
-This creative work by Abigail Read is based on the official Toki Pona book and website: http://tokipona.org
+This text/binary specification and software relates to (but is unaffiliated with) 
+the constructed language "Toki Pona", who's official website is: https://tokipona.org
 
 THIS MATERIAL IS PROVIDED AS IS, WITH ABSOLUTELY NO WARRANTY EXPRESSED
 OR IMPLIED.  ANY USE IS AT YOUR OWN RISK.
